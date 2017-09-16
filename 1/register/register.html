@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>小米注册</title>
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="main.css">
+  <script src="../js/local.js"></script>
+  <script src="../jqury/jquery-3.2.1.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+</head>
+<body>
+<div class="main">
+  <div class="head">
+    <img class="img" src="rice.jpg" alt="">
+  </div>
+  <div class="head">
+    <h2>注册小米账号</h2>
+  </div>
+  <form id="creatPassword" action="" style="display: none">
+    <label class="col-lg-offset-3 col-lg-6 move">手机号码/ID</label>
+    <input id="id" type="text" class="form-control1 col-lg-offset-3 col-lg-6" disabled>
+    <label class="col-lg-offset-3 col-lg-6 move" style="margin-top: 20px">密码</label>
+    <input id="password" type="password" class="form-control1 col-lg-offset-3 col-lg-6">
+    <p class="col-lg-offset-3 col-lg-6 move help-block"></p>
+    <label class="col-lg-offset-3 col-lg-6 move" style="margin-top: 20px">确认密码</label>
+    <input id="checkPassword" type="password" class="form-control1 col-lg-offset-3 col-lg-6">
+    <p class="col-lg-offset-3 col-lg-6 move help-block"></p>
+    <a href="http://localhost:63342/test/app/0906/1/website/website2.html?_ijt=4ufrlsi5vq4rh1477vgvei4g44" id="register" class="btn col-lg-offset-3 col-lg-6 btn-warning" style="height:30px;margin-top: 20px">注册</a>
+    <p class="col-lg-offset-3 col-lg-6 move help-block">注册帐号即表示您同意并愿意遵守小米<strong><a href="http://www.miui.com/res/doc/eula/cn.html">用户协议</a></strong>和<strong><a href="http://www.miui.com/res/doc/privacy/cn.html">隐私政策</a></strong></p>
+  </form>
+  <form id="creatID" action="">
+    <div class="dropdown">
+      <label class="col-lg-offset-3 col-lg-6 move" for="menu">国家/地区</label>
+      <div class="col-lg-offset-3 col-lg-6" style="padding-left: 0;padding-right: 0;">
+        <button id="menu" style="width: 100%;padding-left: 0;" class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown">
+          <p class="col-lg-11">中国</p><span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu ul" aria-labelledby="menu">
+          <li><a href="#">中国</a></li>
+          <li><a href="">英国</a></li>
+          <li><a href="">美国</a></li>
+          <li><a href="">法国</a></li>
+          <li><a href="">德国</a></li>
+          <li><a href="">巴基斯坦</a></li>
+          <li><a href="">中国</a></li>
+          <li><a href="">英国</a></li>
+          <li><a href="">美国</a></li>
+          <li><a href="">法国</a></li>
+          <li><a href="">德国</a></li>
+          <li><a href="">巴基斯坦</a></li>
+        </ul>
+      </div>
+      <p class="col-lg-offset-3 col-lg-6 move help-block">成功注册帐号后，国家/地区将不能被修改</p>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-offset-3 col-lg-6 move" for="">手机号码</label>
+      <div class="input-group col-lg-offset-3 col-lg-6">
+          <span class="input-group-btn">
+            <button data-toggle="dropdown" id="menu2" class="btn btn-default dropdown-toggle" style="height: 34px">+86&nbsp;<span
+              class="caret"></span></button>
+            <ul id="phoneNum" class="dropdown-menu" aria-labelledby="menu2">
+            </ul>
+          </span>
+        <input id="idPhone" class="form-control" type="text" aria-describedby="phone">
+      </div>
+      <p class="col-lg-offset-3 col-lg-6 move help-block"></p>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-offset-3 col-lg-6 move" for="">手机验证码</label>
+      <input id="checkMessage" class="form-control1 col-lg-offset-3 col-lg-3" type="text">
+      <button id="achieve" class="btn btn-default col-lg-3" style="width: 100px;margin-left: 20px">发送</button>
+      <p class="col-lg-offset-3 col-lg-6 move help-block"></p>
+    </div>
+  </form>
+  <button id="next" class="btn col-lg-offset-3 col-lg-6 btn-warning">下一步</button>
+  <p class="col-lg-offset-3 col-lg-6 move help-block">注册帐号即表示您同意并愿意遵守小米<strong><a href="http://www.miui.com/res/doc/eula/cn.html">用户协议</a></strong>和<strong><a href="http://www.miui.com/res/doc/privacy/cn.html">隐私政策</a></strong></p>
+</div>
+<script>
+  $(function () {
+    var phone = [];
+    var reg = /^1[3|4|5|7|8][0-9]{9}$/;
+    $.getJSON("num.json",function (data) {
+      //console.log(data);
+      phone = data;
+      //console.log(phone[0].country);
+      var html = "";
+      for(var i=0,len=phone.length;i<len;i++){
+        html += "<li><a href='#'><span class='col-lg-8 h5-span'>" + phone[i].country + "</span>";
+        html += "<span class='col-lg-4 h5-span1'>" + phone[i].num + "</span></a></li>"
+      }
+      $("#phoneNum").html(html);
+    })
+    var $idphone = $("#idPhone");
+    $("#next").click(function () {
+//      -----------注册电话号码以及验证码验证----------
+      if($idphone.val()==""||$idphone.val()==null||$idphone.val().length==0){
+        $("#idPhone").css("border-color","red");
+        $("#idPhone").parent().next().html("请输入手机号码").css("color","red");
+        return false;
+      }else if(!reg.test($idphone.val())){
+        $("#idPhone").css("border-color","red");
+        $("#idPhone").parent().next().html("请输入正确的手机号码").css("color","red");
+        return false;
+      } else if($("#checkMessage").val() == null||$("#checkMessage").val() == ""||$("#checkMessage").val().length == 0){
+        $("#checkMessage").css("border-color","red");
+        $("#checkMessage").siblings("p").text("请输入验证码").css("color","red");
+        return false;
+      }else if($("#checkMessage").val() != random){
+        $("#checkMessage").css("border-color","red");
+        $("#checkMessage").siblings("p").text("验证码错误").css("color","red");
+        return false;
+      } else{
+        $("#idPhone").css("border-color","green");
+        $("#checkMessage").css("border-color","green");
+        $("#idPhone").parent().next().empty();
+        $("#checkMessage").next().empty();
+      }
+//      ---------密码框出现时获取输入的手机号码---------
+      $("#creatPassword").show(function () {
+        $("#id").val($idphone.val());
+      });
+//      ---------隐藏之前的手机号码框---------
+      $("#creatID").hide();
+      $(this).hide();
+      $(this).next().hide();
+    });
+//    ---------号码框失去焦点时做的验证---------
+    $("#idPhone").blur(function () {
+      if($idphone.val()==""||$idphone.val()==null||$idphone.val().length==0){
+        $("#idPhone").css("border-color","red");
+        $("#idPhone").parent().next().html("请输入手机号码").css("color","red");
+      }else if(!reg.test($idphone.val())){
+        $("#idPhone").css("border-color","red");
+        $("#idPhone").parent().next().html("请输入正确的手机号码").css("color","red");
+      } else{
+        $("#idPhone").css("border-color","green");
+        $("#idPhone").parent().next().empty();
+      }
+    });
+//    ---------密码验证---------
+    var $password = $("#password");
+    var $checkPassword = $("#checkPassword");
+    $("#register").click(function () {
+      if($password.val()==null||$password.val().length==0||$password.val()==""){
+        $($password).css("border-color","red");
+        $($password).next().html("请输入密码").css("color","red");
+        return false
+      }else if($password.val().length<8||$password.val().length>16){
+        $($password).css("border-color","red");
+        $($password).next().html("密码长度在8-16位").css("color","red");
+        return false;
+      }else if($checkPassword.val()!=$password.val()){
+        $($checkPassword).css("border-color","red");
+        $($checkPassword).next().html("密码请保持一致").css("color","red");
+        return false;
+      }else{
+        $($checkPassword).css("border-color","green");
+        $($checkPassword).next().empty();
+        $($password).css("border-color","green");
+        $($password).next().empty();
+      }
+//      window.open(");
+//      ---------创建用户---------
+      var user = {
+        id:$("#id").val(),
+        password:$("#password").val(),
+        islogin:true
+      }
+      store.add("user",user);
+    });
+//    ---------密码失去焦点时验证---------
+    $("#password").blur(function () {
+      if($password.val()==null||$password.val().length==0||$password.val()==""){
+        $($password).css("border-color","red");
+        $($password).next().html("请输入密码").css("color","red");
+        return false
+      }else if($password.val().length<8||$password.val().length>16){
+        $($password).css("border-color","red");
+        $($password).next().html("密码长度在8-16位").css("color","red");
+      }else{
+        $($password).css("border-color","green");
+        $($password).next().empty();
+      };
+    });
+    $("#checkPassword").blur(function () {
+      if($checkPassword.val()!=$password.val()){
+        $($checkPassword).css("border-color","red");
+        $($checkPassword).next().html("密码请保持一致").css("color","red");
+      }else{
+        $($checkPassword).css("border-color","green");
+        $($checkPassword).next().empty();
+      }
+    })
+//    ---------点击发送验证码---------
+    $("#achieve").on("click",function () {
+      sendemail();
+      var mobile = $("#idPhone").val();
+      console.log(mobile);
+      random = Math.round(9999*Math.random());
+      console.log(random);
+      $.ajax({
+        type:"GET",
+        url:"http://smsapi.api51.cn/code/",
+        dataType:"json",
+        data:{
+        mobile:mobile,
+          code:random
+      },
+      headers:{
+        Authorization:'APPCODE 5ec11f0dc7f1495e9ae7f12c44654020'
+      }
+    }).done(function (data) {
+        console.log(data)
+      });
+    });
+//    ---------按钮60秒倒计时---------
+    var countdown=60;
+    function sendemail(){
+      var obj = $("#achieve");
+      settime(obj);
+    }
+    function settime(obj) { //发送验证码倒计时
+      if (countdown == 0) {
+        obj.attr('disabled',false);
+        //obj.removeattr("disabled");
+        obj.text("发送");
+        countdown = 60;
+        return;
+      } else {
+        obj.attr('disabled',true);
+        obj.text("重新发送(" + countdown + ")");
+        countdown--;
+      }
+      setTimeout(function() {
+          settime(obj) }
+        ,1000)
+    }
+
+  })
+
+</script>
+</body>
+</html>

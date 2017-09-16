@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小米登陆</title>
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+  <script src="../js/local.js"></script>
+  <script src="../jqury/jquery-3.2.1.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+  <style>
+    #scan{
+      color: black;
+    }
+    #scan:link{
+      text-decoration: none;
+    }
+    #account{
+      color: red;
+    }
+    #account:link{
+      text-decoration: none;
+    }
+    #scan:hover{
+      color: red;
+      text-decoration: none;
+    }
+    #account:hover{
+      color: red;
+      text-decoration: none;
+    }
+    a:hover{
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="container">
+    <div class="col-md-offset-1 col-md-1" style="padding-top: 20px;padding-bottom: 20px">
+      <img src="../image/rice.jpg" alt="" style="width: 50px;height: 50px">
+    </div>
+    <div class="col-md-10" style="padding-left: 0">
+      <h2>小米商城</h2>
+      <span class="help-block" style="margin-top: -10px">让每个人都能享受科技的乐趣</span>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" style="position:relative;overflow: hidden">
+  <div class="row">
+    <img src="../image/登陆背景.png" alt="">
+    <div style="width: 350px;height: 450px;background-color: white;position: absolute;top:50px;right: 50px">
+      <div class="row">
+        <div class="col-md-6" style="text-align: center;padding-right: 0">
+          <h3 style="color: red;border-right: 1px solid black"><a href="#" id="account">账号登录</a></h3>
+        </div>
+        <div class="col-md-6" style="text-align: center">
+          <h3><a href="#" id="scan">扫码登陆</a></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div id="accountPanel" class="col-md-12" style="margin-top: 20px">
+          <form action="">
+            <div class="col-md-12" style="margin-bottom: 20px">
+              <input id="id" type="text" class="form-control" placeholder="邮箱/手机号码/小米帐号">
+              <p></p>
+            </div>
+            <div class="col-md-12" style="margin-bottom: 20px">
+              <input id="password" type="password" class="form-control" placeholder="密码">
+              <p></p>
+            </div>
+            <div class="col-md-12">
+              <a href="http://localhost:63342/test/app/0906/1/website/website2.html?_ijt=vhntln8rbcoad8fn656khvjgo0" id="login" class="btn btn-warning" style="width: 100%">立即登陆</a>
+            </div>
+          </form>
+          <div class="col-md-12" style="margin-top: 10px;text-align: center">
+            <a href="http://localhost:63342/test/app/0906/1/register/register.html?_ijt=sp9jgt3812mpb6igm7rak3tpfs" style="padding: 10px;color: gainsboro">注册小米账号</a>
+            <a href="#" style="padding: 10px;color: gainsboro">忘记密码</a>
+          </div>
+          <div class="col-md-12" style="margin-top: 100px">
+            <div class="col-md-12">
+              <legend align="center" style="border-bottom:none;font-size: 10px;color: gainsboro;
+                                            border-left: 100px solid #ddd;line-height:1px;
+                                            border-right: 100px solid #ddd">其他登录方式</legend>
+            </div>
+          </div>
+        </div>
+        <div id="scanPanel" class="col-md-12" style="display: none">
+          <div class="col-md-12" style="text-align: center">
+            <img src="../image/二维码.png" alt="" style="margin-top: 50px">
+            <p class="help-block" style="font-size: 12px">使用 <a href="#" class="text-warning">小米商城app</a> 扫一扫</p>
+            <p class="help-block" style="font-size: 12px">请打开「设置 > 小米帐号 > 右上角扫一扫」扫码登录</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="container">
+    <div class="col-md-12" style="text-align: center">
+      <p style="margin-top: 50px"><a href="#" style="padding: 10px;color: black">简体</a><span>|</span><a href="#" style="padding: 10px;color: black">繁体</a><span>|</span>
+         <a href="#" style="padding: 10px;color: black">English</a><span>|</span><a href="#" style="padding: 10px;color: black">常见问题</a><span>|</span></p>
+      <p>小米公司版权所有-京ICP备10046444- <a href="#" style="color: black">京公网安备11010802020134号-京ICP证110507号</a></p>
+    </div>
+  </div>
+</div>
+<script>
+  $(function () {
+//    ---------账号登陆显示---------
+    $("#account").on("click",function () {
+      $("#accountPanel").show();
+      $("#scanPanel").hide();
+      $(this).css("color","red");
+      $("#scan").css("color","black")
+    });
+//    ---------扫码登陆显示---------
+    $("#scan").on("click",function () {
+      $("#accountPanel").hide();
+      $("#scanPanel").show();
+      $(this).css("color","red");
+      $("#account").css("color","black")
+    });
+    var user = store.get("user",{});
+    console.log(user.islogin);
+//    ---------验证用户账号还有密码---------
+    $("#login").on("click",function () {
+      if($("#id").val()==user.id&&$("#password").val()==user.password){
+//        ---------判断用户是否登陆---------
+        if(user.islogin == false){
+          user.islogin = true;
+          store.add("user",user);
+        }else{
+          alert("用户已登录");
+          return false;
+        }
+      }else if($("#id").val()!=user.id){
+        console.log($("#id").next())
+        $("#id").next().text("用户名错误").css("color","red");
+        $("#id").css("border-color","red");
+        return false;
+//        return false;
+      }else if($("#password").val()!=user.password){
+        $("#password").next().text("密码错误").css("color","red");
+        $("#password").css("border-color","red");
+        return false;
+      }else if($("#id").val()==null||$("#id").val()==""||$("#id").val().length==0){
+        $("#id").next().text("请输入用户名").css("color","red");
+        $("#id").css("border-color","red");
+        return false;
+      }else if($("#password").val()==null||$("#password").val()==""||$("#password").val().length==0){
+        $("#password").next().text("请输入密码").css("color","red");
+        $("#password").css("border-color","red");
+        return false;
+      }else{
+        return false;
+      }
+//
+    })
+  })
+</script>
+</body>
+</html>

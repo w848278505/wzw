@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小米账户</title>
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="account.css">
+  <script src="../js/local.js"></script>
+  <script src="../jqury/jquery-3.2.1.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+  <style>
+    .account-label{
+      width: 10%;
+    }
+  </style>
+</head>
+<body>
+<div class="container head">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-5">
+      <a href="#"><img src="image/1.png" alt=""></a>
+    </div>
+    <div class="col-md-5">
+      <a href="#" class="pull-right">退出</a>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10 head" style="position: relative">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#safety" data-toggle="tab">账户安全</a></li>
+        <li><a href="#personal" data-toggle="tab">个人信息</a></li>
+        <li><a href="#binding" data-toggle="tab">绑定授权</a></li>
+        <li><a href="#server" data-toggle="tab">小米服务</a></li>
+      </ul>
+      <div style="position: absolute;right: 0;top:-15px;">
+        <div style="float: left;margin-top: 10px">
+          <p id="name"></p>
+          <p id="phonename"></p>
+        </div>
+        <img class="img-circle" style="width: 80px;height: 80px" src="image/1.png" alt="">
+      </div>
+    </div>
+    <div class="tab-content col-md-offset-1 col-md-10">
+      <div class="tab-pane active" id="safety">
+        <div style="width: 100%">
+          <div class="col-md-12 account-flex">
+            <h3>安全等级</h3>
+            <h3 class="text-danger account-point">40</h3>
+            <span class="account-text">分</span>
+            <div class="progress account-point" style="width: 50%;height: 5px;margin-bottom: 12px">
+              <div class="progress-bar" ria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;background-color: red;height: 5px"></div>
+            </div>
+            <span class="account-text account-point">存在2项风险</span>
+          </div>
+          <div class="col-md-12" style="padding-top:20px;padding-bottom: 20px;border-bottom: 1px solid gainsboro">
+            <div class="col-md-1 account-flex1">
+              <img src="image/2.png" alt="">
+            </div>
+            <div class="col-md-9">
+              <h4>账号密码</h4>
+              <p class="help-block">用于保护帐号信息和登录安全</p>
+            </div>
+            <div class="col-md-2 account-flex1" style="justify-content: flex-end">
+              <button class="btn btn-default" data-toggle="modal" data-target="#changeModal">修改</button>
+            </div>
+          </div>
+          <div class="col-md-12" style="padding-top:20px;padding-bottom: 20px;border-bottom: 1px solid gainsboro">
+            <div class="col-md-1 account-flex1">
+              <img src="image/3.png" alt="">
+            </div>
+            <div class="col-md-9">
+              <h4 style="display: inline-block">安全邮箱</h4>
+              <span class="text-danger">未绑定</span>
+              <p class="text-danger">安全邮箱将可用于登录小米帐号和重置密码，建议立即设置</p>
+            </div>
+            <div class="col-md-2 account-flex1" style="justify-content: flex-end">
+              <button class="btn btn-default">修改</button>
+            </div>
+          </div>
+          <div class="col-md-12" style="padding-top:20px;padding-bottom: 20px;border-bottom: 1px solid gainsboro">
+            <div class="col-md-1 account-flex1">
+              <img src="image/4.png" alt="">
+            </div>
+            <div class="col-md-9">
+              <h4 style="display: inline-block">安全手机</h4>
+              <h4 style="display: inline-block">131******03</h4>
+              <p class="help-block">安全手机可以用于登录小米帐号，重置密码或其他安全验证</p>
+            </div>
+            <div class="col-md-2 account-flex1" style="justify-content: flex-end">
+              <button class="btn btn-default" style="margin-right: 10px">添加</button>
+              <button class="btn btn-default">修改</button>
+            </div>
+          </div>
+          <div class="col-md-12" style="padding-top:20px;padding-bottom: 20px;border-bottom: 1px solid gainsboro">
+            <div class="col-md-1 account-flex1">
+              <img src="image/5.png" alt="">
+            </div>
+            <div class="col-md-10">
+              <h4 style="display: inline-block">密保问题</h4>
+              <span class="text-danger">未设置</span>
+              <p class="text-danger">密保问题用于安全验证，建议立即设置</p>
+            </div>
+            <div class="col-md-1 account-flex1">
+              <button class="btn btn-default">修改</button>
+            </div>
+          </div>
+        </div>
+        <div style="width: 100%">
+          <div class="col-md-12 account-flex">
+            <h3>推荐使用</h3>
+          </div>
+          <div class="col-md-12" style="padding-top:20px;padding-bottom: 20px;border-bottom: 1px solid gainsboro">
+            <div class="col-md-1 account-flex1">
+              <img src="image/2.png" alt="">
+            </div>
+            <div class="col-md-9">
+              <h4>小米安全令牌</h4>
+              <p class="help-block">在非信任设备上登录需要二次验证，防止他人恶意登录</p>
+            </div>
+            <div class="col-md-2 account-flex1" style="justify-content: flex-end">
+              <button class="btn btn-default">修改</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="personal">
+        <div class="col-md-6" style="display: flex;align-items: center;height: 280.6px">
+          <div style="width: 100%">
+            <div class="col-md-12  account-flex2">
+              <img class="img-circle" style="width: 80px;height: 80px" src="image/1.png" alt="">
+            </div>
+            <div class="col-md-12  account-flex2">
+              <p><a href="#">设置头像</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row" style="border-bottom: 1px solid gainsboro">
+            <div class="col-md-6">
+              <h4>基础资料</h4>
+            </div>
+            <div class="col-md-6" style="display: flex;height:39px;align-items: center">
+              <a href="#" data-toggle="modal" data-target="#personalModal">编辑</a>
+            </div>
+          </div>
+          <div class="row" style="border-bottom: 1px solid gainsboro;padding-top: 10px">
+            <div class="col-md-12">
+              <p>姓名：<span id="addname" style="color:gainsboro">请设置名字</span></p>
+            </div>
+          </div>
+          <div class="row" style="border-bottom: 1px solid gainsboro;padding-top: 10px">
+            <div class="col-md-12">
+              <p>生日：<span id="birthday"></span></p>
+            </div>
+          </div>
+          <div class="row" style="border-bottom: 1px solid gainsboro;padding-top: 10px">
+            <div class="col-md-12">
+              <p>性别：<span id="sex"></span></p>
+            </div>
+          </div>
+          <div class="row" style="border-bottom: 1px solid gainsboro">
+            <div class="col-md-12">
+              <h4>高级设置</h4>
+            </div>
+          </div>
+          <div class="row" style="border-bottom: 1px solid gainsboro;padding-top: 10px">
+            <div class="col-md-6">
+              <p>银行卡</p>
+            </div>
+            <div class="col-md-6">
+              <a href="#">管理</a>
+            </div>
+          </div>
+          <div class="row" style="border-bottom: 1px solid gainsboro;padding-top: 10px">
+            <div class="col-md-12">
+              <p>账号地区：<span style="color:gainsboro">中国</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="binding">
+
+      </div>
+      <div class="tab-pane" id="server">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12" style="border-bottom: 1px solid gainsboro">
+              <h3>您的帐号可以登录以下服务</h3>
+            </div>
+            <div class="col-md-6" style="padding: 10px">
+              <div class="col-lg-2">
+                <img src="image/6.png" alt="">
+              </div>
+              <div class="col-md-10">
+                <b><a href="#">小米官网</a></b>
+                <p>小米手机，红米手机，小米平板和小米电视官方正品</p>
+              </div>
+            </div>
+            <div class="col-md-6" style="padding: 10px">
+              <div class="col-lg-2">
+                <img src="image/6.png" alt="">
+              </div>
+              <div class="col-md-10">
+                <b><a href="#">MIUI</a></b>
+                <p>发烧友必刷的Android ROM</p>
+              </div>
+            </div>
+            <div class="col-md-6" style="padding: 10px">
+              <div class="col-lg-2">
+                <img src="image/6.png" alt="">
+              </div>
+              <div class="col-md-10">
+                <b><a href="#">云服务</a></b>
+                <p>随时随地，管理你的所有设备和数据</p>
+              </div>
+            </div>
+            <div class="col-md-6" style="padding: 10px">
+              <div class="col-lg-2">
+                <img src="image/6.png" alt="">
+              </div>
+              <div class="col-md-10">
+                <b><a href="#">米币中心</a></b>
+                <p>轻松安心充值，乐享小米服务</p>
+              </div>
+            </div>
+            <div class="col-md-6" style="padding: 10px">
+              <div class="col-lg-2">
+                <img src="image/6.png" alt="">
+              </div>
+              <div class="col-md-10">
+                <b><a href="#">应用商店</a></b>
+                <p>发现最新最热最好玩的应用</p>
+              </div>
+            </div>
+            <div class="col-md-6" style="padding: 10px">
+              <div class="col-lg-2">
+                <img src="image/6.png" alt="">
+              </div>
+              <div class="col-md-10">
+                <b><a href="#">主题商店</a></b>
+                <p>手机百变换装，从此与众不同</p>
+              </div>
+            </div>
+            <div class="col-md-6" style="padding: 10px">
+              <div class="col-lg-2">
+                <img src="image/6.png" alt="">
+              </div>
+              <div class="col-md-10">
+                <b><a href="#">多看阅读</a></b>
+                <p>海量畅销电子书免费试读，数百万读者阅读首选</p>
+              </div>
+            </div>
+            <div class="col-md-6" style="padding: 10px">
+              <div class="col-lg-2">
+                <img src="image/6.png" alt="">
+              </div>
+              <div class="col-md-10">
+                <b><a href="#">米聊</a></b>
+                <p>轻松社交，米粉乐园</p>
+              </div>
+            </div>
+            <div class="col-md-6" style="padding: 10px">
+              <div class="col-lg-2">
+                <img src="image/6.png" alt="">
+              </div>
+              <div class="col-md-10">
+                <b><a href="#">小米社区</a></b>
+                <p>小米手机官方论坛</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="changeModal" tabindex="-1" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal"><span>&times;</span></button>
+        <div class="modal-title">修改密码</div>
+      </div>
+      <div class="modal-body">
+          <form action="">
+            <div class="form-group">
+              <b>原密码</b>
+            </div>
+            <div class="form-group">
+              <input id="old-password" type="password" class="form-control" placeholder="输入原密码">
+            </div>
+            <div class="form-group">
+              <b>新密码</b>
+            </div>
+            <div class="form-group">
+              <input id="new-password" type="password" class="form-control"  placeholder="输入新密码">
+            </div>
+            <div class="form-group">
+              <input id="new-password-again" type="password" class="form-control"  placeholder="重复新密码">
+            </div>
+            <p class="help-block">密码长度8~16位，其中数字，字母和符号至少包含两种</p>
+            <div class="form-group">
+              <b>验证码</b>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control"  placeholder="图片验证码" style="width: 50%;display: inline-block">
+              <img src="image/getCode.jpg" alt="">
+            </div>
+            <div class="form-group">
+              <button id="change" class="btn btn-success">确定</button>
+              <button class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="personalModal" tabindex="-1" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal"><span>&times;</span></button>
+        <div class="modal-title">编辑基础资料</div>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <div class="form-group">
+            <label for="" class="account-label control-label">姓名：</label>
+            <input id="personName" type="text" class="form-control" style="width: 80%;display: inline-block" placeholder="姓名">
+          </div>
+          <div class="form-group">
+            <label for="" class="account-label control-label">生日：</label>
+            <input id="year" type="text" class="form-control" style="width:25%;display: inline-block">年
+            <input id="mounth" type="text" class="form-control" style="width:25%;display: inline-block">月
+            <input id="day" type="text" class="form-control" style="width:25%;display: inline-block">日
+          </div>
+          <div class="form-group">
+            <label for="" class="account-label control-label">性别：</label>
+            <input name="sex" type="radio" value="男">男
+            <input name="sex" type="radio" value="女">女
+          </div>
+          <div class="form-group">
+            <button id="yes" class="btn btn-success">确定</button>
+            <button class="btn btn-default" data-dismiss="modal">取消</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(function () {
+//    ---------获取用户名及密码---------
+    var user = store.get("user");
+    if(user != null){
+      $("#phonename").text(user.id);
+    }else{
+      $("#phonename").text("请绑定手机");
+    }
+    var person = store.get("person");
+    if(person != null){
+      $("#name").text(person.name);
+    }
+    $("#change").on("click",function () {
+      if($("#new-password").val() == $("#old-password").val()){
+        alert("新密码不能与旧密码重复");
+        return false;
+      }else if($("#new-password-again").val() != $("#new-password").val()){
+        alert("重复密码不正确");
+        return false;
+      }else if($("#new-password").val().length<8||$("#new-password").val().length>16){
+        alert("密码长度在8-16之间");
+        return false;
+      }else if($("#old-password").val() == user.password){
+        user.password = $("#new-password").val();
+        store.add("user",user);
+        console.log(user);
+      }else{
+        alert("旧密码错误")
+        return false;
+      }
+    });
+
+    $("#personalModal").on("show.bs.modal",function () {
+      var person = store.get("person");
+//      console.log(person);
+      if(person != null){
+        $("#personName").val(person.name);
+        $("#year").val(person.birthday.year);
+        $("#mounth").val(person.birthday.mounth);
+        $("#day").val(person.birthday.day);
+        var sex = $("input[name=sex]");
+//        console.log(person.sex);
+        for(var i=0,len=sex.length;i<len;i++){
+          if(sex[i].value == person.sex){
+//            console.log(123)
+            var changesex = sex[i];
+//            console.log(changesex)
+            changesex.checked = true;
+//            alert(sex[i].value)
+          }
+        }
+        console.log($("input[name=sex]"))
+//        console.log("123")
+      };
+    })
+    $("#yes").on("click",function () {
+      var person = {
+        name:$("#personName").val(),
+        birthday:{
+          year:$("#year").val(),
+          mounth:$("#mounth").val(),
+          day:$("#day").val()
+        },
+        sex:$("input[type=radio]:checked").val()
+      };
+      store.add("person",person);
+    });
+
+    var personal = store.get("person");
+    if(personal != null){
+//      console.log(personal)
+//      console.log($("#addname").text());
+      $("#addname").text(personal.name).css("color","black");
+      $("#birthday").text(personal.birthday.year+"年"+personal.birthday.mounth+"月"+personal.birthday.day+"日");
+      $("#sex").text(personal.sex);
+    }
+  })
+</script>
+</body>
+</html>
